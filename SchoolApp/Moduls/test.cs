@@ -7,5 +7,7 @@ namespace SchoolApp.Moduls
 {
     public class test
     {
+        string hello = "hello world ";
+
     }
 }
