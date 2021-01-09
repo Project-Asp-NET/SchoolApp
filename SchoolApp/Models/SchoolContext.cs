@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SchoolApp.Models;
+
 #nullable disable
 
-namespace SchoolApp.Data
+namespace SchoolApp.Models
 {
     public partial class SchoolContext : DbContext
     {
