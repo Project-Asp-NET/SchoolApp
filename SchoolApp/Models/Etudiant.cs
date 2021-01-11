@@ -16,6 +16,5 @@ namespace SchoolApp.Models
         public string Tel { get; set; }
         public DateTime? DateNaiss { get; set; }
         public string Adresse { get; set; }
-        public byte[] Photo { get; set; }
     }
 }

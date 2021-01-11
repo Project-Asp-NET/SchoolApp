@@ -9,6 +9,5 @@ namespace SchoolApp.Models
     {
         public string IdFill { get; set; }
         public string NomFill { get; set; }
-        public string IdChef { get; set; }
     }
 }

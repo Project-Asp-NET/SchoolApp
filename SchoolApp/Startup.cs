@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SchoolApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SchoolApp
 {
@@ -24,6 +26,12 @@ namespace SchoolApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddDbContext<SchoolDBContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SchoolAppContext")));
+           // services.AddDbContext<SchoolAppContext>(options =>
+            // options.UseMySql(Configuration.GetConnectionString("SchoolContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
