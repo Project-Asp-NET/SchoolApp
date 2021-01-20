@@ -1,0 +1,112 @@
+﻿@page
+@model SchoolApp.Pages.Administrateur.EtudiantsModel
+@{
+    ViewData["Title"] = "Table Etudiants";
+    ViewData["Adminname"] = "Mohamed";
+    Layout = "~/Pages/Shared/layout_admin.cshtml";
+}
+<script>
+    function HideAndShow() {
+        var x = document.getElementById("Add");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Tables Des Etudiants
+    </div>
+    <!---->
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].IdEtud)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Prenom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].IdFill)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Tel)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].IdEtud)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Prenom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].IdFill)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Etudiant[0].Tel)
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.Etudiant)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdEtud)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Prenom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdFill)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tel)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.IdEtud">Edit</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.IdEtud">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

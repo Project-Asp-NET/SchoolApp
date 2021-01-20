@@ -15,11 +15,9 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Prof[0].IdDep)
+                @Html.DisplayNameFor(model => model.Prof[0].IdProf)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prof[0].Password)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Prof[0].Nom)
             </th>
@@ -27,11 +25,15 @@
                 @Html.DisplayNameFor(model => model.Prof[0].Prenom)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Prof[0].IdDep)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Prof[0].Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Prof[0].Tel)
             </th>
+
             <th></th>
         </tr>
     </thead>
@@ -39,11 +41,9 @@
 @foreach (var item in Model.Prof) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdDep)
+                @Html.DisplayFor(modelItem => item.IdProf)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
             </td>
@@ -51,11 +51,15 @@
                 @Html.DisplayFor(modelItem => item.Prenom)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.IdDep)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tel)
             </td>
+
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.IdProf">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.IdProf">Details</a> |

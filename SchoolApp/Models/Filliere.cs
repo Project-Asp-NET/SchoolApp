@@ -8,6 +8,7 @@ namespace SchoolApp.Models
     public partial class Filliere
     {
         public string IdFill { get; set; }
+        public string IdProf { get; set; }
         public string NomFill { get; set; }
     }
 }

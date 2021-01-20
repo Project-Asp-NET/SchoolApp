@@ -18,7 +18,7 @@ namespace SchoolApp.Data
         }
 
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<Adsence> Adsences { get; set; }
+        public virtual DbSet<Absence> Absences { get; set; }
         public virtual DbSet<Departement> Departements { get; set; }
         public virtual DbSet<Element> Elements { get; set; }
         public virtual DbSet<Etudiant> Etudiants { get; set; }
@@ -64,12 +64,12 @@ namespace SchoolApp.Data
                     .HasColumnName("USERNAME");
             });
 
-            modelBuilder.Entity<Adsence>(entity =>
+            modelBuilder.Entity<Absence>(entity =>
             {
                 entity.HasKey(e => new { e.IdEtud, e.IdElem })
                     .IsClustered(false);
 
-                entity.ToTable("ADSENCE");
+                entity.ToTable("ABSENCE");
 
                 entity.Property(e => e.IdEtud)
                     .HasMaxLength(10)
@@ -206,6 +206,12 @@ namespace SchoolApp.Data
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("ID_FILL");
+
+                entity.Property(e => e.IdProf)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("ID_PROF");
 
                 entity.Property(e => e.NomFill)
                     .HasMaxLength(100)

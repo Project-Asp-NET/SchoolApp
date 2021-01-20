@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SchoolApp.Models
 {
-    public partial class Adsence
+    public partial class Absence
     {
         public string IdEtud { get; set; }
         public string IdElem { get; set; }
