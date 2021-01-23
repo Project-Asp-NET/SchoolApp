@@ -19,7 +19,7 @@ namespace SchoolApp.Pages.Admins
             _context = context;
         }
 
-        public Admin Admin { get; set; }
+        public SchoolApp.Models.Admin Admin { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {

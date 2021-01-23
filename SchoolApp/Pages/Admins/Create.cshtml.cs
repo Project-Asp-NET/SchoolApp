@@ -25,7 +25,7 @@ namespace SchoolApp.Pages.Admins
         }
 
         [BindProperty]
-        public Admin Admin { get; set; }
+        public SchoolApp.Models.Admin Admin { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -39,6 +39,18 @@ namespace SchoolApp.Pages.Admins
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+        public async Task<IActionResult> OnPostAddAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Admins.Add(Admin);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Create");
         }
     }
 }

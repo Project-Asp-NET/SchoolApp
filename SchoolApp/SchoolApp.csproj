@@ -29,7 +29,7 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Pages\Eleve\" />
-    <Folder Include="Pages\Professeur\" />
+    <Folder Include="Pages\Prof\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Pages\Administrateur\Index.cshtml">
+    <Content Update="Pages\Admin\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

@@ -8,7 +8,7 @@ namespace SchoolApp.Models
 {
     public partial class Etudiant
     {
-        [Display(Name = "Code Apoge")]
+        [Display(Name = "Code")]
         public string IdEtud { get; set; }
         [Display(Name = "Filliere")]
         public string IdFill { get; set; }
@@ -21,7 +21,7 @@ namespace SchoolApp.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Date de Naissance")]
+        [Display(Name = "Naissance")]
         public DateTime? DateNaiss { get; set; }
         public string Adresse { get; set; }
     }

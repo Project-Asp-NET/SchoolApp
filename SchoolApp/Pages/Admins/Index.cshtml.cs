@@ -20,7 +20,7 @@ namespace SchoolApp.Pages.Admins
             _context = context;
         }
 
-        public PaginatedList<Admin> Admin { get;set; }
+        public PaginatedList<SchoolApp.Models.Admin> Admin { get;set; }
         public string NameSort { get; set; }
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
@@ -39,7 +39,7 @@ namespace SchoolApp.Pages.Admins
                 searchString = currentFilter;
             }
 
-            IQueryable<Admin> AdminSort = from s in _context.Admins
+            IQueryable<SchoolApp.Models.Admin> AdminSort = from s in _context.Admins
                                              select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -57,7 +57,7 @@ namespace SchoolApp.Pages.Admins
                     break;
             }
             int pageSize = 2;
-            Admin = await PaginatedList<Admin>.CreateAsync(
+            Admin = await PaginatedList<Models.Admin>.CreateAsync(
                 AdminSort.AsNoTracking(), pageIndex ?? 1, pageSize);
             
 

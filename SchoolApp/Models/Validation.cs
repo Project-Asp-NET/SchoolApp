@@ -9,7 +9,7 @@ namespace SchoolApp.Models
     {
         public string IdEtud { get; set; }
         public string IdMod { get; set; }
-        public string Validation1 { get; set; }
+        public string Valid { get; set; }
         public decimal? NoteFinal { get; set; }
     }
 }

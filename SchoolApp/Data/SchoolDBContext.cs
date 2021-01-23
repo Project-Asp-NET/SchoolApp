@@ -343,7 +343,7 @@ namespace SchoolApp.Data
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("NOTE_FINAL");
 
-                entity.Property(e => e.Validation1)
+                entity.Property(e => e.Valid)
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("VALIDATION");

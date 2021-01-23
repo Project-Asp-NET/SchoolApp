@@ -3,7 +3,6 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Pages/Shared/layout_admin.cshtml";
 }
 
 <h1>Create</h1>
@@ -30,7 +29,7 @@
                 <span asp-validation-for="Admin.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input asp-page-handler="Add" type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
