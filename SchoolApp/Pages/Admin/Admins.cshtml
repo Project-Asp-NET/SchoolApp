@@ -1,0 +1,176 @@
+﻿@page
+@model SchoolApp.Pages.Admin.AdminsModel
+@{
+    ViewData["Title"] = "Admins";
+    ViewData["Adminname"] = "Mohamed";
+    Layout = "~/Pages/Shared/layout_admin.cshtml";
+}
+<div class="card mb-4">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <div>
+            <i class="fas fa-table mr-1"></i>
+            Tables Des Admins
+        </div>
+        <div class="form-inline">
+            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#Add">Add</button>&nbsp;&nbsp;
+            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#Edit">Edit</button>&nbsp;&nbsp;
+            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#Delete">Delete</button>
+        </div>
+    </nav>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Admin[0].IdAdmin)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Admin[0].Username)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Admin[0].Password)
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Admin[0].IdAdmin)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Admin[0].Username)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Admin[0].Password)
+                        </th>
+                        
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.Admin)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdAdmin)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="Delete">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Admin</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="deleteAdmin.IdAdmin" class="control-label"></label>
+                        <input type="text" asp-for="deleteAdmin.IdAdmin" class="form-control" placeholder="Code Admin" />
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" asp-page-handler="Delete">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="Edit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Admin1.IdAdmin" class="control-label"></label>
+                        <input type="text" asp-for="Admin1.IdAdmin" class="form-control" placeholder="Code Admin" />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Admin1.Username" class="control-label"></label>
+                        <input asp-for="Admin1.Username" class="form-control" placeholder="Username"  />
+                        <span asp-validation-for="Admin1.Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Admin1.Password" class="control-label"></label>
+                        <input asp-for="Admin1.Password" class="form-control" placeholder="Password" />
+                        <span asp-validation-for="Admin1.Password" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" asp-page-handler="Edit">Edit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="Add">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="addAdmin.IdAdmin" class="control-label"></label>
+                        <input asp-for="addAdmin.IdAdmin" class="form-control" placeholder="Code Admin" />
+                        <span asp-validation-for="addAdmin.IdAdmin" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addAdmin.Username" class="control-label"></label>
+                        <input asp-for="addAdmin.Username" class="form-control" placeholder="Username" />
+                        <span asp-validation-for="addAdmin.Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addAdmin.Password" class="control-label"></label>
+                        <input asp-for="addAdmin.Password" class="form-control" placeholder="Password" />
+                        <span asp-validation-for="addAdmin.Password" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" asp-page-handler="Add" value="Add">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

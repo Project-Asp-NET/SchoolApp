@@ -1,0 +1,35 @@
+﻿@page
+@model SchoolApp.Pages.Fillieres.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Filliere</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Filliere.IdProf)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Filliere.IdProf)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Filliere.NomFill)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Filliere.NomFill)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Filliere.IdFill" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

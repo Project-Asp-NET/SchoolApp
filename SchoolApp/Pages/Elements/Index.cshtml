@@ -1,0 +1,49 @@
+﻿@page
+@model SchoolApp.Pages.Elements.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Element[0].IdMod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Element[0].IdProf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Element[0].NomElem)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Element) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdMod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomElem)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdElem">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdElem">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdElem">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
