@@ -5,14 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SchoolApp.Models;
+using SchoolApp.Data;
 
 namespace SchoolApp.Pages.Administrateur
 {
     public class IndexModel : PageModel
     {
-        private readonly SchoolApp.Data.SchoolDBContext _context;
+        private readonly SchoolDBContext _context;
 
-        public IndexModel(SchoolApp.Data.SchoolDBContext context)
+        public IndexModel(SchoolDBContext context)
         {
             _context = context;
         }

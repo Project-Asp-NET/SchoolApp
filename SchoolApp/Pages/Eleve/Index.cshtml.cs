@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SchoolApp.Data;
-using SchoolApp.Models;
 
-namespace SchoolApp.Pages.Fillieres
+namespace SchoolApp.Pages.Eleve
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +17,17 @@ namespace SchoolApp.Pages.Fillieres
             _context = context;
         }
 
-        public IList<Filliere> Filliere { get;set; }
+        public Models.Etudiant Etudiant { get; set; }
+        [BindProperty]
+        public Models.Filliere Filliere { get; set; }
 
-        public async Task OnGetAsync()
+        public List <Models.Module> Modules { get; set; }
+
+        public void OnGet(String id)
         {
-            Filliere = await _context.Fillieres.ToListAsync();
+            Etudiant = _context.Etudiants.Single(s => s.IdEtud == id);
+            Filliere = _context.Fillieres.Include(cat => cat.Modules).Single(s => s.IdFill == Etudiant.IdFill);
+
         }
     }
 }

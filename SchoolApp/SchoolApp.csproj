@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Prof\**" />
+    <Content Remove="Pages\Prof\**" />
+    <EmbeddedResource Remove="Pages\Prof\**" />
+    <None Remove="Pages\Prof\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\css\styles.css" />
     <Content Remove="wwwroot\js\scripts.js" />
   </ItemGroup>
@@ -28,8 +35,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Pages\Eleve\" />
-    <Folder Include="Pages\Prof\" />
   </ItemGroup>
 
   <ItemGroup>

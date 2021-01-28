@@ -8,8 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SchoolApp.Data;
+
 using Microsoft.EntityFrameworkCore;
+using SchoolApp.Data;
 
 namespace SchoolApp
 {
@@ -29,7 +30,7 @@ namespace SchoolApp
 
             services.AddDbContext<SchoolDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SchoolAppContext")));
-           // services.AddDbContext<SchoolAppContext>(options =>
+            // services.AddDbContext<SchoolAppContext>(options =>
             // options.UseMySql(Configuration.GetConnectionString("SchoolContext")));
 
         }

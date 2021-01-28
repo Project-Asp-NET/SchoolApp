@@ -1,0 +1,26 @@
+﻿@page
+@model SchoolApp.Pages.Eleve.IndexModel
+@{
+    ViewData["Title"] = "Home";
+    ViewData["Elevename"] = "Mohamed";
+    Layout = "~/Pages/Shared/layout_eleve.cshtml";
+
+    
+}
+<h1>hello</h1>
+
+
+<p>
+    @Html.DisplayFor(modelItem => Model.Etudiant.Nom)<br />@Html.DisplayFor(modelItem => Model.Etudiant.IdEtud)<br />
+    @Html.DisplayFor(modelItem => Model.Filliere.NomFill)<br />@Html.DisplayFor(modelItem => Model.Etudiant.IdFill)
+
+    @foreach (var item in Model.Filliere.Modules)
+    {
+        @Html.DisplayFor(modelItem => item.NomMod)<br />
+
+    }
+
+
+
+</p>
+
