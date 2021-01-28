@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="106d38faf4ad41d7878e4716a781770d" Name="Diagram1">
+        <EntityTypeShape EntityType="SchoolDBModel.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.ABSENCE" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.ADMIN" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.DEPARTEMENT" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.ELEMENT" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.ETUDIANT" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.FILLIERE" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.MODULE" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.NOTE" Width="1.5" PointX="12.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.PROF" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.VALIDATION" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
+        <AssociationConnector Association="SchoolDBModel.FK_ABSENCE" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_ABSENCE2" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_ADSENCE" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_ADSENCE2" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_ELEM_DE_MOD" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_ENSEIGNE" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_NOTE" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_FILL_DE_ETUDIANT" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_NOTE2" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_VALIDATION2" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_CHEF" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_MOD_DE_FILL" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_VALIDATION" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -12,5 +12,8 @@ namespace SchoolApp.Models
         public decimal? NoteAvRatt { get; set; }
         public decimal? NoteRatt { get; set; }
         public decimal? NoteFinal { get; set; }
+
+        public virtual Element IdElemNavigation { get; set; }
+        public virtual Etudiant IdEtudNavigation { get; set; }
     }
 }

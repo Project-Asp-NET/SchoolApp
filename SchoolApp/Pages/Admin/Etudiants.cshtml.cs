@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using SchoolApp.Models;
 
 namespace SchoolApp.Pages.Administrateur
@@ -19,13 +20,10 @@ namespace SchoolApp.Pages.Administrateur
 
         public IList<Etudiant> Etudiant { get; set; }
 
-        /*public async Task OnGetAsync()
+        public async Task OnGetAsync()
         {
-            //Departement = await _context.Departements.ToListAsync();
-        }*/
-        public void OnGet()
-        {
-            Etudiant = _context.Etudiants.ToList();
-        }
+            Etudiant = await  _context.Etudiants.ToListAsync();
+        }/**/
+        
     }
 }

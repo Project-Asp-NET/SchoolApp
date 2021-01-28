@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SchoolApp.Models;
+using SchoolApp.Data;
 
 namespace SchoolApp.Pages.Admin
 {
     public class AdminsModel : PageModel
     {
-        private readonly SchoolApp.Data.SchoolDBContext _context;
+        private readonly SchoolDBContext _context;
 
-        public AdminsModel(SchoolApp.Data.SchoolDBContext context)
+        public AdminsModel(SchoolDBContext context)
         {
             _context = context;
         }

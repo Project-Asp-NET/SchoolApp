@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SchoolApp.Models;
+
 #nullable disable
 
 namespace SchoolApp.Data
@@ -17,8 +18,8 @@ namespace SchoolApp.Data
         {
         }
 
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Absence> Absences { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Departement> Departements { get; set; }
         public virtual DbSet<Element> Elements { get; set; }
         public virtual DbSet<Etudiant> Etudiants { get; set; }
@@ -33,7 +34,7 @@ namespace SchoolApp.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=SchoolDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SchoolAppDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
@@ -41,32 +42,10 @@ namespace SchoolApp.Data
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Admin>(entity =>
-            {
-                entity.HasKey(e => e.IdAdmin)
-                    .IsClustered(false);
-
-                entity.ToTable("ADMIN");
-
-                entity.Property(e => e.IdAdmin)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("ID_ADMIN");
-
-                entity.Property(e => e.Password)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("PASSWORD");
-
-                entity.Property(e => e.Username)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("USERNAME");
-            });
-
             modelBuilder.Entity<Absence>(entity =>
             {
                 entity.HasKey(e => new { e.IdEtud, e.IdElem })
+                    .HasName("PK_ADSENCE")
                     .IsClustered(false);
 
                 entity.ToTable("ABSENCE");
@@ -91,6 +70,39 @@ namespace SchoolApp.Data
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("JUSTIFICATION");
+
+                entity.HasOne(d => d.IdElemNavigation)
+                    .WithMany(p => p.Absences)
+                    .HasForeignKey(d => d.IdElem)
+                    .HasConstraintName("FK_ABSENCE");
+
+                entity.HasOne(d => d.IdEtudNavigation)
+                    .WithMany(p => p.Absences)
+                    .HasForeignKey(d => d.IdEtud)
+                    .HasConstraintName("FK_ABSENCE2");
+            });
+
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.HasKey(e => e.IdAdmin)
+                    .IsClustered(false);
+
+                entity.ToTable("ADMIN");
+
+                entity.Property(e => e.IdAdmin)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("ID_ADMIN");
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("PASSWORD");
+
+                entity.Property(e => e.Username)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("USERNAME");
             });
 
             modelBuilder.Entity<Departement>(entity =>
@@ -139,6 +151,16 @@ namespace SchoolApp.Data
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("NOM_ELEM");
+
+                entity.HasOne(d => d.IdModNavigation)
+                    .WithMany(p => p.Elements)
+                    .HasForeignKey(d => d.IdMod)
+                    .HasConstraintName("FK_ELEM_DE_MOD");
+
+                entity.HasOne(d => d.IdProfNavigation)
+                    .WithMany(p => p.Elements)
+                    .HasForeignKey(d => d.IdProf)
+                    .HasConstraintName("FK_ENSEIGNE");
             });
 
             modelBuilder.Entity<Etudiant>(entity =>
@@ -183,7 +205,6 @@ namespace SchoolApp.Data
                     .IsUnicode(false)
                     .HasColumnName("PASSWORD");
 
-
                 entity.Property(e => e.Prenom)
                     .HasMaxLength(30)
                     .IsUnicode(false)
@@ -193,6 +214,11 @@ namespace SchoolApp.Data
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasColumnName("TEL");
+
+                entity.HasOne(d => d.IdFillNavigation)
+                    .WithMany(p => p.Etudiants)
+                    .HasForeignKey(d => d.IdFill)
+                    .HasConstraintName("FK_FILL_DE_ETUDIANT");
             });
 
             modelBuilder.Entity<Filliere>(entity =>
@@ -217,7 +243,14 @@ namespace SchoolApp.Data
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("NOM_FILL");
+                
+                
             });
+
+            modelBuilder.Entity<Prof>()
+                .HasOne(a => a.IdFillNavigation)
+                .WithOne(b => b.IdProfNavigation)
+                .HasForeignKey<Filliere>(b => b.IdProf);
 
             modelBuilder.Entity<Module>(entity =>
             {
@@ -246,6 +279,12 @@ namespace SchoolApp.Data
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("SEMESTRE");
+
+                entity.HasOne(d => d.IdFillNavigation)
+                    .WithMany(p => p.Modules)
+                    .HasForeignKey(d => d.IdFill)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MOD_DE_FILL");
             });
 
             modelBuilder.Entity<Note>(entity =>
@@ -276,6 +315,16 @@ namespace SchoolApp.Data
                 entity.Property(e => e.NoteRatt)
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("NOTE_RATT");
+
+                entity.HasOne(d => d.IdElemNavigation)
+                    .WithMany(p => p.Notes)
+                    .HasForeignKey(d => d.IdElem)
+                    .HasConstraintName("FK_NOTE");
+
+                entity.HasOne(d => d.IdEtudNavigation)
+                    .WithMany(p => p.Notes)
+                    .HasForeignKey(d => d.IdEtud)
+                    .HasConstraintName("FK_NOTE2");
             });
 
             modelBuilder.Entity<Prof>(entity =>
@@ -301,6 +350,11 @@ namespace SchoolApp.Data
                     .IsUnicode(false)
                     .HasColumnName("ID_DEP");
 
+                entity.Property(e => e.IdFill)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("ID_FILL");
+
                 entity.Property(e => e.Nom)
                     .HasMaxLength(30)
                     .IsUnicode(false)
@@ -320,6 +374,12 @@ namespace SchoolApp.Data
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasColumnName("TEL");
+
+                entity.HasOne(d => d.IdDepNavigation)
+                    .WithMany(p => p.Profs)
+                    .HasForeignKey(d => d.IdDep)
+                    .HasConstraintName("FK_DEP_DE_PROF");
+
             });
 
             modelBuilder.Entity<Validation>(entity =>
@@ -343,10 +403,20 @@ namespace SchoolApp.Data
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("NOTE_FINAL");
 
-                entity.Property(e => e.Valid)
+                entity.Property(e => e.Validation1)
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("VALIDATION");
+
+                entity.HasOne(d => d.IdEtudNavigation)
+                    .WithMany(p => p.Validations)
+                    .HasForeignKey(d => d.IdEtud)
+                    .HasConstraintName("FK_VALIDATION2");
+
+                entity.HasOne(d => d.IdModNavigation)
+                    .WithMany(p => p.Validations)
+                    .HasForeignKey(d => d.IdMod)
+                    .HasConstraintName("FK_VALIDATION");
             });
 
             OnModelCreatingPartial(modelBuilder);
