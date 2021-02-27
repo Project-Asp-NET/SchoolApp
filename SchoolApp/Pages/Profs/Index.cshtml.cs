@@ -16,19 +16,23 @@ namespace SchoolApp.Pages.Profs
 
         public IList<SchoolApp.Models.Element> profElements { get; set; }
 
+        public Prof Prof;
+
 
         public IndexModel(SchoolApp.Data.SchoolDBContext context)
         {
             _context = context;
         }
 
-        public IList<Prof> Prof { get;set; }
+       
 
         public void OnGet(string id)
         {
             ViewData["idProf"] = id;
             profElements = _context.Elements.Where(e => e.IdProf == id).ToList();
             ViewData["profElements"] = profElements;
+
+            Prof = (Prof)_context.Profs.Where(p => p.IdProf == id).FirstOrDefault();
         }
     }
 }
