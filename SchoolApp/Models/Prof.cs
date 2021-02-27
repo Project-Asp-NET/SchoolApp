@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -17,7 +19,9 @@ namespace SchoolApp.Models
         public string Password { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
+        [Display(Name="Adresse Email")]
         public string Email { get; set; }
+        [Display(Name="Numero de téléphone")]
         public string Tel { get; set; }
         public string IdFill { get; set; }
 

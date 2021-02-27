@@ -14,6 +14,9 @@ namespace SchoolApp.Pages.Profs
     {
         private readonly SchoolApp.Data.SchoolDBContext _context;
 
+        public IList<SchoolApp.Models.Element> profElements { get; set; }
+
+
         public IndexModel(SchoolApp.Data.SchoolDBContext context)
         {
             _context = context;
@@ -21,9 +24,11 @@ namespace SchoolApp.Pages.Profs
 
         public IList<Prof> Prof { get;set; }
 
-        public async Task OnGetAsync()
+        public void OnGet(string id)
         {
-            Prof = await _context.Profs.ToListAsync();
+            ViewData["idProf"] = id;
+            profElements = _context.Elements.Where(e => e.IdProf == id).ToList();
+            ViewData["profElements"] = profElements;
         }
     }
 }

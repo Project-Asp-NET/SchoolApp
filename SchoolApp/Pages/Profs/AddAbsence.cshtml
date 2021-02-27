@@ -1,0 +1,50 @@
+﻿@page
+@model SchoolApp.Pages.Profs.AddAbsenceModel
+@{
+    ViewData["Title"] = "Ajouter absence";
+    ViewData["Adminname"] = "Firdaous";
+    Layout = "~/Pages/Shared/layout_prof.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@ViewData["idEtud"]" name="studentId" />
+            <input type="hidden" asp-for="@ViewData["idElem"]" name="elemId" />
+            <input type="hidden" asp-for="@ViewData["idProf"]" name="profId" />
+            <div class="form-group">
+                <label class="control-label">Date d'absence</label>
+                <input type="datetime-local" name="dateAbs" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Absence justifiée</label>
+                <select name="isJustif" id="isJustif" class="form-control">
+                    <option value="True" selected>Oui</option>
+                    <option value="False">Non</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Justification</label>
+                <input name="Justif" id="Justif" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+    document.getElementById('isJustif').onchange = function () {
+    if(this.value === 'True') {
+        document.getElementById("Justif").disabled = false;
+    }
+
+    else {
+        document.getElementById("Justif").disabled = true;
+    }
+}
+
+
+</script>

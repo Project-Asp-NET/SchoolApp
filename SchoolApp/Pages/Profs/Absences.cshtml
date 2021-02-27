@@ -1,0 +1,81 @@
+﻿@page
+@model SchoolApp.Pages.Profs.AbsencesModel
+@{
+    ViewData["Title"] = "Absences";
+    ViewData["Adminname"] = "Firdaous";
+    Layout = "~/Pages/Shared/layout_prof.cshtml";
+}
+<div class="card mb-4">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <div>
+            <div class="row">
+                <div class="col-md-4">Matière=@Html.DisplayFor(modelItem => Model.element.NomElem)</div>
+                <div class="col-md-4">Fillière = @Html.DisplayFor(modelItem => Model.filliere.NomFill)</div>
+                <div class="col-md-4">Module = @Html.DisplayFor(modelItem => Model.module.NomMod)</div>
+            </div>
+        </div>
+    </nav>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.studentsList[0].IdEtud)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.studentsList[0].Nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.studentsList[0].Prenom)
+                        </th>
+                        
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.studentsList[0].IdEtud)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.studentsList[0].Nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.studentsList[0].Prenom)
+                        </th>
+                        
+                        
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.studentsList)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdEtud)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prenom)
+                        </td>
+                       
+                        
+
+                        <td>
+                            <a asp-page="/Profs/Absence" asp-route-id="@item.IdEtud" asp-route-prof="@ViewData["idProf"]" asp-route-elem="@Model.element.IdElem">
+                                Consulter Absences
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

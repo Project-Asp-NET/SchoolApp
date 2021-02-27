@@ -1,0 +1,82 @@
+﻿@page
+@model SchoolApp.Pages.Profs.AbsenceModel
+@{
+    ViewData["Title"] = "Gestion d'absence";
+    ViewData["Adminname"] = "Firdaous";
+    Layout = "~/Pages/Shared/layout_prof.cshtml";
+}
+<div class="card mb-4">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <div>
+            <div class="row">
+                <div class="col-md-6">Etudiant=@Html.DisplayFor(modelItem => Model.etudiant.Nom)  @Html.DisplayFor(modelItem => Model.etudiant.Prenom)</div>
+                <div class="col-md-6">Matière=@Html.DisplayFor(modelItem => Model.element.NomElem)</div>
+            </div>
+        </div>
+    </nav>
+<div class="card-body">
+    <a asp-page="/Profs/AddAbsence" asp-route-id="@ViewData["idEtud"]" asp-route-prof="@ViewData["idProf"]" asp-route-elem="@ViewData["idElem"]">
+        Ajouter absence
+    </a>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.listeAbsences[0].DateAbs)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.listeAbsences[0].IsJustif)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.listeAbsences[0].Justification)
+                    </th>
+
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.listeAbsences[0].DateAbs)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.listeAbsences[0].IsJustif)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.listeAbsences[0].Justification)
+                    </th>
+
+
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model.listeAbsEtudiant)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateAbs)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsJustif)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Justification)
+                        </td>
+
+                        <td>
+                            <a asp-page="/Profs/AddAbsence" asp-route-id="@item.IdEtud" asp-route-prof="@ViewData["idProf"]" asp-route-elem="@ViewData["idElem"]">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
