@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -14,6 +15,8 @@ namespace SchoolApp.Models
         }
 
         public string IdFill { get; set; }
+
+        
         public string IdProf { get; set; }
         public string NomFill { get; set; }
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SchoolApp.Models;
 using SchoolApp.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace SchoolApp.Pages.Administrateur
 {
@@ -18,15 +19,22 @@ namespace SchoolApp.Pages.Administrateur
             _context = context;
         }
 
-        public IList<Etudiant> Etudiant { get; set; }
+        public Models.Admin Admin { get; set; }
 
         /*public async Task OnGetAsync()
         {
             //Departement = await _context.Departements.ToListAsync();
+
         }*/
         public void OnGet()
         {
-            Etudiant =  _context.Etudiants.ToList();
+            HttpContext.Session.SetString("IDAdmin", "adm1");
+
+            String id = HttpContext.Session.GetString("IDAdmin");
+
+            Admin = _context.Admins.Single(s =>s.IdAdmin==id);
+            ViewData["Adminname"] = Admin.Username;
+
         }
     }
 }

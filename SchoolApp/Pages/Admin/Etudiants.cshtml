@@ -2,7 +2,7 @@
 @model SchoolApp.Pages.Administrateur.EtudiantsModel
 @{
     ViewData["Title"] = "Etudiants";
-    ViewData["Adminname"] = "Mohamed";
+    //ViewData["Adminname"] = "Mohamed";
     Layout = "~/Pages/Shared/layout_admin.cshtml";
 }
 
@@ -17,9 +17,12 @@
             <i class="fas fa-table mr-1"></i>
             Tables Des Etudiants
         </div>
-        <div class="form-inline">
-            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#Add">Add New</button>
-        </div>
+       
+    <div class="form-inline">
+        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#Add">Add</button>&nbsp;&nbsp;
+        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#Edit">Edit</button>&nbsp;&nbsp;
+        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#Delete">Delete</button>
+    </div>
     </nav>
     <!--<p>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Add">Add</button>
@@ -37,7 +40,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Etudiant[0].IdEtud)
                         </th>
-
                         <th>
                             @Html.DisplayNameFor(model => model.Etudiant[0].Nom)
                         </th>
@@ -138,6 +140,128 @@
     </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog" id="Delete">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Etudiant</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="deleteEtud.IdEtud" class="control-label"></label>
+                        <select asp-for="deleteEtud.IdEtud" class="form-control">
+                            @foreach (var item in Model.Etudiant)
+                            {
+                                <option>
+                                    @Html.DisplayFor(modelItem => item.IdEtud)
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" asp-page-handler="Delete">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="Edit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Etudiant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="editEtud.IdEtud" class="control-label"></label>
+                            <select class="form-control" asp-for="editEtud.IdEtud" required>
+                                @foreach (var item in Model.Etudiant)
+                                {
+                                    <option>@Html.DisplayFor(modelItem => item.IdEtud)</option>
+                                }
+                                </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="editEtud.IdFill" class="control-label"></label>
+                            <select class="form-control" asp-for="editEtud.IdFill" required>
+                                @foreach (var item in Model.Filliere)
+                                {
+                                    <option>@Html.DisplayFor(modelItem => item.IdFill)</option>
+                                }
+
+                            </select>
+                            <span asp-validation-for="editEtud.IdFill" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="editEtud.Nom" class="control-label"></label>
+                            <input asp-for="editEtud.Nom" class="form-control" />
+                            <span asp-validation-for="editEtud.Nom" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="editEtud.Prenom" class="control-label"></label>
+                            <input asp-for="editEtud.Prenom" class="form-control" />
+                            <span asp-validation-for="editEtud.Prenom" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editEtud.Email" class="control-label"></label>
+                        <input asp-for="editEtud.Email" class="form-control" />
+                        <span asp-validation-for="editEtud.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editEtud.Password" class="control-label"></label>
+                        <input asp-for="editEtud.Password" class="form-control" />
+                        <span asp-validation-for="editEtud.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editEtud.Adresse" class="control-label"></label>
+                        <input asp-for="editEtud.Adresse" class="form-control" />
+                        <span asp-validation-for="editEtud.Adresse" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="editEtud.Tel" class="control-label"></label>
+                            <input asp-for="editEtud.Tel" class="form-control" />
+                            <span asp-validation-for="editEtud.Tel" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="editEtud.DateNaiss" class="control-label"></label>
+                            <input asp-for="editEtud.DateNaiss" class="form-control" />
+                            <span asp-validation-for="editEtud.DateNaiss" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" asp-page-handler="Edit">Edit Etudiant</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal" tabindex="-1" role="dialog" id="Add">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -148,50 +272,78 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            <label asp-for="addEtud.IdEtud" class="control-label"></label>
+                            <input asp-for="addEtud.IdEtud" class="form-control" required />
+                            <span asp-validation-for="addEtud.IdEtud" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
+                            <label asp-for="addEtud.IdFill" class="control-label"></label>
+                            <select class="form-control" asp-for="addEtud.IdFill" required>
+                                @foreach (var item in Model.Filliere)
+                                {
+                                    <option>@Html.DisplayFor(modelItem => item.IdFill)</option>
+                                }
+
                             </select>
+                            <span asp-validation-for="addEtud.IdFill" class="text-danger"></span>
                         </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                        </div>
+
                     </div>
 
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="addEtud.Nom" class="control-label"></label>
+                            <input asp-for="addEtud.Nom" class="form-control" />
+                            <span asp-validation-for="addEtud.Nom" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="addEtud.Prenom" class="control-label"></label>
+                            <input asp-for="addEtud.Prenom" class="form-control" />
+                            <span asp-validation-for="addEtud.Prenom" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addEtud.Email" class="control-label"></label>
+                        <input asp-for="addEtud.Email" class="form-control" />
+                        <span asp-validation-for="addEtud.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addEtud.Password" class="control-label"></label>
+                        <input asp-for="addEtud.Password" class="form-control" />
+                        <span asp-validation-for="addEtud.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addEtud.Adresse" class="control-label"></label>
+                        <input asp-for="addEtud.Adresse" class="form-control" />
+                        <span asp-validation-for="addEtud.Adresse" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="addEtud.Tel" class="control-label"></label>
+                            <input asp-for="addEtud.Tel" class="form-control" />
+                            <span asp-validation-for="addEtud.Tel" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="addEtud.DateNaiss" class="control-label"></label>
+                            <input asp-for="addEtud.DateNaiss" class="form-control" />
+                            <span asp-validation-for="addEtud.DateNaiss" class="text-danger"></span>
+                        </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" asp-page-handler="Add">Add Etudiant</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
 
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" asp-page="/Administateur/Etudiants">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+                </div>
         </div>
     </div>
 </div>
