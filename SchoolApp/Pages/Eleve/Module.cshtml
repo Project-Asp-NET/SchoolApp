@@ -1,0 +1,35 @@
+﻿@page
+@model SchoolApp.Pages.Eleve.ModuleModel
+
+@{
+    ViewData["Title"] = "Module";
+    Layout = "~/Pages/Shared/layout_eleve.cshtml";
+
+}
+<div class="container">
+    <div class="main-body">
+
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <br />
+            <h1>Module : @Model.Module.NomMod</h1>
+            <hr /><br />
+        </nav>
+        <div class="card-deck">
+            @foreach (var item in Model.Module.Elements) {
+            <div class="card" style="width: 18rem;">
+                <div class="card-header" > @item.NomElem
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Code Element : @item.IdElem</li>
+                    <li class="list-group-item">Note Final: 
+                     
+                    @Model.Etudiant.Notes.Single(t => t.IdElem == item.IdElem).NoteFinal
+                    
+                    </li>
+                    
+                </ul>
+            </div>
+            }
+        </div>
+    </div>
+</div>

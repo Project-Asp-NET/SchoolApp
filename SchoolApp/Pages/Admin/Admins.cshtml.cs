@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SchoolApp.Models;
 using SchoolApp.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace SchoolApp.Pages.Admin
 {
@@ -26,13 +27,22 @@ namespace SchoolApp.Pages.Admin
         public SchoolApp.Models.Admin Admin1 { get; set; }
         [BindProperty]
         public SchoolApp.Models.Admin deleteAdmin { get; set; }
+        public Models.Admin Admin2 { get; private set; }
+
+
         /*public async Task OnGetAsync()
-        {
-            //Departement = await _context.Departements.ToListAsync();
-        }*/
+{
+//Departement = await _context.Departements.ToListAsync();
+}*/
         public void OnGet()
         {
             Admin = _context.Admins.ToList();
+
+
+            String id = HttpContext.Session.GetString("IDAdmin");
+
+            Admin2 = _context.Admins.Single(s => s.IdAdmin == id);
+            ViewData["Adminname"] = Admin2.Username;
         }
 
 
@@ -75,7 +85,7 @@ namespace SchoolApp.Pages.Admin
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AdminExists(Admin1.IdAdmin))
+                if (!isExists(Admin1.IdAdmin))
                 {
                     return NotFound();
                 }
@@ -101,7 +111,7 @@ namespace SchoolApp.Pages.Admin
 
             return RedirectToPage("./Admins");
         }
-        private bool AdminExists(string id)
+        private bool isExists(string id)
         {
             return _context.Admins.Any(e => e.IdAdmin == id);
         }

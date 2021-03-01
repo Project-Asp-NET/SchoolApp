@@ -1,0 +1,118 @@
+﻿@page
+@model SchoolApp.Pages.Eleve.NotesModel
+@{
+    ViewData["Title"] = "Notes";
+    Layout = "~/Pages/Shared/layout_eleve.cshtml";
+
+}
+
+<div class="card mb-4">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <div>
+            <i class="fas fa-table mr-1"></i>
+            Tables Des Notes
+        </div>
+    </nav>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Validation[0].IdModNavigation.NomMod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].IdElemNavigation.NomElem)
+                        </th>
+                        <!--id="dataTable"-->
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].NoteAvRatt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].NoteRatt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].NoteFinal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Validation[0].NoteFinal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Validation[0].Validation1)
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Validation[0].IdModNavigation.NomMod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].IdElemNavigation.NomElem)
+                        </th>
+                        <!---->
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].NoteAvRatt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].NoteRatt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note[0].NoteFinal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Validation[0].NoteFinal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Validation[0].Validation1)
+                        </th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @for (int i = 0; i < Model.Validation.Count(); ++i)
+                    {
+                        for (int k = 0; k < Model.Validation[i].IdModNavigation.Elements.Count(); ++k)
+                        {
+                            if (Model.Validation[k].IdModNavigation.Elements != null)
+                            {
+                    <tr>
+                        @if (k == 0)
+                        {
+                        
+                            <td rowspan=@Model.Validation[i].IdModNavigation.Elements.Count() style="vertical-align: middle">
+                                @Model.Validation[i].IdModNavigation.NomMod
+                            </td>
+                        
+                        }
+                        <td>
+                            @Model.Validation[i].IdModNavigation.Elements.ElementAt(k).NomElem
+                        </td>
+                        <td>
+                            @Model.Note.Single(s=> s.IdElem == @Model.Validation[i].IdModNavigation.Elements.ElementAt(k).IdElem).NoteAvRatt
+                        </td>
+                        <td>
+                            @Model.Note.Single(s => s.IdElem == @Model.Validation[i].IdModNavigation.Elements.ElementAt(k).IdElem).NoteRatt
+                        </td>
+                        <td>
+                            @Model.Note.Single(s => s.IdElem == @Model.Validation[i].IdModNavigation.Elements.ElementAt(k).IdElem).NoteFinal
+                        </td>
+                        @if (k == 0)
+                        {
+                            <td rowspan=@Model.Validation[i].IdModNavigation.Elements.Count() style="vertical-align: middle">
+                                @Model.Validation.Single(s => s.IdMod== @Model.Validation[i].IdModNavigation.IdMod).NoteFinal
+                            </td>
+                            <td rowspan=@Model.Validation[i].IdModNavigation.Elements.Count() style="vertical-align: middle">
+                                @Model.Validation.Single(s => s.IdMod == @Model.Validation[i].IdModNavigation.IdMod).Validation1
+                            </td>
+                        }
+
+                    </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

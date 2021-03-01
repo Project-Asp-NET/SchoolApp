@@ -1,4 +1,346 @@
 ﻿@page
 @model SchoolApp.Pages.Administrateur.ProfsModel
 @{
+    ViewData["Title"] = "Professeurs";
+    //ViewData["Adminname"] = "Mohamed";
+    Layout = "~/Pages/Shared/layout_admin.cshtml";
 }
+<div class="card mb-4">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <div>
+            <i class="fas fa-table mr-1"></i>
+            Tables Des Professeurs
+        </div>
+        <div class="form-inline">
+            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#Add">Add</button>&nbsp;&nbsp;
+            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#Edit">Edit</button>&nbsp;&nbsp;
+            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#Delete">Delete</button>
+        </div>
+    </nav>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].IdProf)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Prenom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Password)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].IdDepNavigation.NomDep)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Tel)
+                        </th>
+                        <th>
+                            Nbr de Elements
+                        </th>
+                        <th>
+                            Chef de Filliere
+                        </th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].IdProf)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Prenom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Password)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].IdDepNavigation.NomDep)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prof[0].Tel)
+                        </th>
+                        <th>
+                            Nbr de Elements
+                        </th>
+                        <th>
+                            Chef de Filliere
+                        </th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.Prof)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.IdProf
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Prenom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdDepNavigation.NomDep)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tel)
+                            </td>
+                            <td>
+                                @item.Elements.Count()
+                            </td>
+                            <td>@item.IdFill</td>
+
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="Delete">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Etudiant</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="deleteProf.IdProf" class="control-label"></label>
+                        <select asp-for="deleteProf.IdProf" class="form-control">
+                            @foreach (var item in Model.Prof)
+                            {
+                                <option>
+                                    @Html.DisplayFor(modelItem => item.IdProf)
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" asp-page-handler="Delete">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="Edit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Etudiant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="editProf.IdProf" class="control-label"></label>
+                            <select class="form-control" asp-for="editProf.IdProf" required>
+                                @foreach (var item in Model.Prof)
+                                {
+                                    <option>@Html.DisplayFor(modelItem => item.IdProf)</option>
+                                }
+
+                            </select>
+                            <span asp-validation-for="editProf.IdProf" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="editProf.IdDep" class="control-label"></label>
+                            <select class="form-control" asp-for="editProf.IdDep" required>
+                                @foreach (var item in Model.Departement)
+                                {
+                                    <option>@Html.DisplayFor(modelItem => item.IdDep)</option>
+                                }
+
+                            </select>
+                            <span asp-validation-for="editProf.IdDep" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="editProf.Nom" class="control-label"></label>
+                            <input asp-for="editProf.Nom" class="form-control" />
+                            <span asp-validation-for="editProf.Nom" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="editProf.Prenom" class="control-label"></label>
+                            <input asp-for="editProf.Prenom" class="form-control" />
+                            <span asp-validation-for="editProf.Prenom" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editProf.Email" class="control-label"></label>
+                        <input asp-for="editProf.Email" class="form-control" />
+                        <span asp-validation-for="editProf.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editProf.Password" class="control-label"></label>
+                        <input asp-for="editProf.Password" class="form-control" />
+                        <span asp-validation-for="editProf.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="editProf.IdFill" class="control-label"></label>
+                        <select class="form-control" asp-for="editProf.IdFill" required>
+                            <option>no Chef</option>
+                            @foreach (var item in Model.Filliere)
+                            {
+                                <option>@Html.DisplayFor(modelItem => item.IdFill)</option>
+                            }
+
+                        </select>
+                        <span asp-validation-for="editProf.IdFill" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label asp-for="editProf.Tel" class="control-label"></label>
+                        <input asp-for="editProf.Tel" class="form-control" />
+                        <span asp-validation-for="editProf.Tel" class="text-danger"></span>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" asp-page-handler="Edit">Edit Prof</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="Add">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Etudiant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="addProf.IdProf" class="control-label"></label>
+                            <input asp-for="addProf.IdProf" class="form-control" required />
+                            <span asp-validation-for="addProf.IdProf" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="addProf.IdDep" class="control-label"></label>
+                            <select class="form-control" asp-for="addProf.IdDep" required>
+                                @foreach (var item in Model.Departement)
+                                {
+                                    <option>@Html.DisplayFor(modelItem => item.IdDep)</option>
+                                }
+
+                            </select>
+                            <span asp-validation-for="addProf.IdDep" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="addProf.Nom" class="control-label"></label>
+                            <input asp-for="addProf.Nom" class="form-control" />
+                            <span asp-validation-for="addProf.Nom" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="addProf.Prenom" class="control-label"></label>
+                            <input asp-for="addProf.Prenom" class="form-control" />
+                            <span asp-validation-for="addProf.Prenom" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addProf.Email" class="control-label"></label>
+                        <input asp-for="addProf.Email" class="form-control" />
+                        <span asp-validation-for="addProf.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addProf.Password" class="control-label"></label>
+                        <input asp-for="addProf.Password" class="form-control" />
+                        <span asp-validation-for="addProf.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="addProf.IdFill" class="control-label"></label>
+                        <select class="form-control" asp-for="addProf.IdFill" required>
+                            <option>no Chef</option>
+                            @foreach (var item in Model.Filliere)
+                            {
+                                <option>@Html.DisplayFor(modelItem => item.IdFill)</option>
+                            }
+
+                        </select>
+                        <span asp-validation-for="addProf.IdFill" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label asp-for="addProf.Tel" class="control-label"></label>
+                        <input asp-for="addProf.Tel" class="form-control" />
+                        <span asp-validation-for="addProf.Tel" class="text-danger"></span>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" asp-page-handler="Add">Add Prof</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

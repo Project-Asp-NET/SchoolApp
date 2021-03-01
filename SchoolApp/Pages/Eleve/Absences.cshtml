@@ -1,22 +1,18 @@
 ﻿@page
-@model SchoolApp.Pages.Administrateur.AbsencesModel
-@{
+@model SchoolApp.Pages.Eleve.AbsencesModel
+
+@{ 
     ViewData["Title"] = "Absences";
-    //ViewData["Adminname"] = "Mohamed";
-    Layout = "~/Pages/Shared/layout_admin.cshtml";
+    Layout = "~/Pages/Shared/layout_eleve.cshtml";
+
 }
+
 <div class="card mb-4">
     <nav class="navbar navbar-light bg-light justify-content-between">
         <div>
             <i class="fas fa-table mr-1"></i>
             Tables Des Absences
         </div>
-        <!--
-    <div class="form-inline">
-        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#Add">Add</button>&nbsp;&nbsp;
-        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#Edit">Edit</button>&nbsp;&nbsp;
-        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#Delete">Delete</button>
-    </div>-->
     </nav>
     <div class="card-body">
         <div class="table-responsive">
@@ -24,11 +20,7 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Absence[0].IdEtud)
-                        </th>
-
-                        <th>
-                            @Html.DisplayNameFor(model => model.Absence[0].IdElem)
+                            @Html.DisplayNameFor(model => model.Absence[0].IdElemNavigation.NomElem)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Absence[0].DateAbs)
@@ -44,11 +36,7 @@
                 <tfoot>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Absence[0].IdEtud)
-                        </th>
-
-                        <th>
-                            @Html.DisplayNameFor(model => model.Absence[0].IdElem)
+                            @Html.DisplayNameFor(model => model.Absence[0].IdElemNavigation.NomElem)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Absence[0].DateAbs)
@@ -67,14 +55,12 @@
                     {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IdEtud)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdElem)
+                            @Html.DisplayFor(modelItem => item.IdElemNavigation.NomElem)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DateAbs)
                         </td>
+
                         @if (item.IsJustif == true)
                         {
                             <td>Justifier</td>
@@ -85,16 +71,16 @@
                         }
 
 
-                        @if (item.Justification != null)
-                        {
-                            <td>@Html.DisplayFor(modelItem => item.Justification)</td>
+                            @if (item.Justification != null)
+                            {
+                        <td>@Html.DisplayFor(modelItem => item.Justification)</td>
                         }
                         else
                         {
                             <td>Non Justification</td>
                         }
-
-                    </tr>
+                            
+                        </tr>
                     }
                 </tbody>
             </table>

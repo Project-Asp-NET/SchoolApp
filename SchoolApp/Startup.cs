@@ -27,7 +27,9 @@ namespace SchoolApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-
+            services.AddSession(options => 
+                options.IdleTimeout = TimeSpan.FromMinutes(30));
+            services.AddMemoryCache();
             services.AddDbContext<SchoolDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SchoolAppContext")));
             // services.AddDbContext<SchoolAppContext>(options =>
@@ -53,7 +55,7 @@ namespace SchoolApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

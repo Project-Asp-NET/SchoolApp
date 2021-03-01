@@ -44,8 +44,8 @@ namespace SchoolApp.Data
 
             modelBuilder.Entity<Absence>(entity =>
             {
-                entity.HasKey(e => new { e.IdEtud, e.IdElem })
-                    .HasName("PK_ADSENCE")
+                entity.HasKey(e => new { e.IdEtud, e.IdElem , e.DateAbs })
+                    .HasName("PK_ABSENCE")
                     .IsClustered(false);
 
                 entity.ToTable("ABSENCE");
@@ -243,14 +243,22 @@ namespace SchoolApp.Data
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("NOM_FILL");
+
+                entity.HasOne(d => d.IdProfNavigation)
+                    .WithOne(d => d.IdFillNavigation)
+                    .HasForeignKey<Prof>(b => b.IdProf)
+                    .HasConstraintName("FK_CHEF");
+
                 
-                
+
             });
 
-            modelBuilder.Entity<Prof>()
-                .HasOne(a => a.IdFillNavigation)
-                .WithOne(b => b.IdProfNavigation)
-                .HasForeignKey<Filliere>(b => b.IdProf);
+
+            /*modelBuilder.Entity<Prof>()
+                    .HasOne(d => d.IdFillNavigation)
+                    .WithOne(d => d.IdProfNavigation)
+                    .HasForeignKey<Filliere>(b => b.IdFill)
+                    .HasConstraintName("FK_CHEF_2");*/
 
             modelBuilder.Entity<Module>(entity =>
             {
@@ -351,6 +359,7 @@ namespace SchoolApp.Data
                     .HasColumnName("ID_DEP");
 
                 entity.Property(e => e.IdFill)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("ID_FILL");
@@ -380,7 +389,21 @@ namespace SchoolApp.Data
                     .HasForeignKey(d => d.IdDep)
                     .HasConstraintName("FK_DEP_DE_PROF");
 
+                 /*entity.HasOne<Filliere>(d => d.IdFillNavigation)
+                    .WithOne(d => d.IdProfNavigation)
+                    .HasConstraintName("FK_CHEF");
+                 entity.HasOne(a => a.IdFillNavigation)
+                     .WithOne(b => b.IdProfNavigation)
+                     .HasConstraintName("FK_CHEF");*/
+
             });
+
+            /*modelBuilder.Entity<Filliere>()
+
+                    .HasOne(d => d.IdProfNavigation)
+                    .WithOne(d => d.IdFillNavigation)
+                    .HasForeignKey<Prof>(b => b.IdProf)
+                    .HasConstraintName("FK_CHEF");*/
 
             modelBuilder.Entity<Validation>(entity =>
             {

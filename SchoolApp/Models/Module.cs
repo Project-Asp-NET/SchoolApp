@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -13,8 +14,11 @@ namespace SchoolApp.Models
             Validations = new HashSet<Validation>();
         }
 
+        [Display(Name = "Module")]
         public string IdMod { get; set; }
+        [Display(Name = "Filiere")]
         public string IdFill { get; set; }
+        [Display(Name = "Nom Module")]
         public string NomMod { get; set; }
         public string Semestre { get; set; }
 

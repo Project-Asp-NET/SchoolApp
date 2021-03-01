@@ -2,7 +2,7 @@
 @model SchoolApp.Pages.Admin.AdminsModel
 @{
     ViewData["Title"] = "Admins";
-    ViewData["Adminname"] = "Mohamed";
+    //ViewData["Adminname"] = "Mohamed";
     Layout = "~/Pages/Shared/layout_admin.cshtml";
     
 }
@@ -86,8 +86,14 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="deleteAdmin.IdAdmin" class="control-label"></label>
-                        <input type="text" asp-for="deleteAdmin.IdAdmin" class="form-control" placeholder="Code Admin" />
-
+                        <select asp-for="deleteAdmin.IdAdmin" class="form-control">
+                            @foreach (var item in Model.Admin)
+                            {
+                                <option>
+                                    @Html.DisplayFor(modelItem => item.IdAdmin)
+                                </option>
+                            }
+                        </select>
                     </div>
 
                 </div>
@@ -114,8 +120,13 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Admin1.IdAdmin" class="control-label"></label>
-                        <input type="text" asp-for="Admin1.IdAdmin" class="form-control" placeholder="Code Admin" />
-
+                        <select asp-for="Admin1.IdAdmin" class="form-control" >
+                            @foreach (var item in Model.Admin) { 
+                            <option>
+                                @Html.DisplayFor(modelItem => item.IdAdmin)
+                            </option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                         <label asp-for="Admin1.Username" class="control-label"></label>
@@ -127,7 +138,7 @@
                         <input asp-for="Admin1.Password" class="form-control" placeholder="Password" />
                         <span asp-validation-for="Admin1.Password" class="text-danger"></span>
                     </div>
-
+                            
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" asp-page-handler="Edit">Edit</button>
@@ -152,7 +163,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="addAdmin.IdAdmin" class="control-label"></label>
-                        <input asp-for="addAdmin.IdAdmin" class="form-control" placeholder="Code Admin" />
+                        <input asp-for="addAdmin.IdAdmin" class="form-control" placeholder="Code Admin" required />
                         <span asp-validation-for="addAdmin.IdAdmin" class="text-danger"></span>
                     </div>
                     <div class="form-group">

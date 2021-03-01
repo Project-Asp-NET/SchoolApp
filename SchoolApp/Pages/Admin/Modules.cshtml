@@ -1,4 +1,89 @@
 ﻿@page
 @model SchoolApp.Pages.Administrateur.ModulesModel
 @{
+    ViewData["Title"] = "Modules";
+    //ViewData["Adminname"] = "Mohamed";
+    Layout = "~/Pages/Shared/layout_admin.cshtml";
 }
+<div class="card mb-4">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <div>
+            <i class="fas fa-table mr-1"></i>
+            Tables Des Modules
+        </div>
+        <!--
+    <div class="form-inline">
+        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#Add">Add</button>&nbsp;&nbsp;
+        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#Edit">Edit</button>&nbsp;&nbsp;
+        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#Delete">Delete</button>
+    </div>-->
+    </nav>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].IdMod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].NomMod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].IdFill)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].Semestre)
+                        </th>
+                        <th>
+                            Nbr des Elements
+                        </th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].IdMod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].NomMod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].IdFill)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Module[0].Semestre)
+                        </th>
+                        <th>
+                            Nbr des Elements
+                        </th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.Module)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdMod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomMod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdFill)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Semestre)
+                        </td>
+                        <td>
+                            @item.Elements.Count()
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
