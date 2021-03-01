@@ -30,9 +30,9 @@ namespace SchoolApp.Pages.Eleve
 
         public void OnGet(String idmod)
         {
-            //HttpContext.Session.SetString("ID", "idetu2");
+            //HttpContext.Session.SetString("ID", "idetu1");
 
-            String id = HttpContext.Session.GetString("ID");
+            String id = HttpContext.Session.GetString("IDEleve");
 
             Etudiant = _context.Etudiants.Include(f => f.IdFillNavigation).Include(e => e.Notes).Single(s => s.IdEtud == id);
 

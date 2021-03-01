@@ -25,7 +25,6 @@ namespace SchoolApp.Pages.Administrateur
         {
             Val = _context.Validations.ToList();
 
-            HttpContext.Session.SetString("IDAdmin", "adm1");
 
             String id = HttpContext.Session.GetString("IDAdmin");
 

@@ -27,7 +27,6 @@ namespace SchoolApp.Pages.Administrateur
         {
             Fill = _context.Fillieres.Include(s => s.Etudiants).Include(s=>s.IdProfNavigation).Include(s => s.Modules).ToList();
             Prof = _context.Profs.ToList();
-            HttpContext.Session.SetString("IDAdmin", "adm1");
 
             String id = HttpContext.Session.GetString("IDAdmin");
 

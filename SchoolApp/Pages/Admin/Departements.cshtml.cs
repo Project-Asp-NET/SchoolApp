@@ -26,7 +26,6 @@ namespace SchoolApp.Pages.Administrateur
         {
             Dep = _context.Departements.Include(d => d.Profs).ToList();
 
-            HttpContext.Session.SetString("IDAdmin", "adm1");
 
             String id = HttpContext.Session.GetString("IDAdmin");
 

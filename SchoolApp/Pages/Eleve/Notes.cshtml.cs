@@ -26,7 +26,7 @@ namespace SchoolApp.Pages.Eleve
         public void OnGet()
         {
             //HttpContext.Session.SetString("ID", "idetu1");
-            String id = HttpContext.Session.GetString("ID");
+            String id = HttpContext.Session.GetString("IDEleve");
 
             Note = _context.Notes.Include(s => s.IdElemNavigation).Where(e => e.IdEtud == id).ToList();
 

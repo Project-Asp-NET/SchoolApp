@@ -38,7 +38,6 @@ namespace SchoolApp.Pages.Admin
         {
             Admin = _context.Admins.ToList();
 
-            HttpContext.Session.SetString("IDAdmin", "adm1");
 
             String id = HttpContext.Session.GetString("IDAdmin");
 

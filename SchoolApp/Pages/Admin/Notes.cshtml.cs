@@ -24,7 +24,6 @@ namespace SchoolApp.Pages.Administrateur
         public void OnGet()
         {
             Note = _context.Notes.ToList();
-            HttpContext.Session.SetString("IDAdmin", "adm1");
 
             String id = HttpContext.Session.GetString("IDAdmin");
 

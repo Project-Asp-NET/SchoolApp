@@ -34,7 +34,6 @@ namespace SchoolApp.Pages.Administrateur
             Etudiant = await  _context.Etudiants.ToListAsync();
             Filliere = _context.Fillieres.ToList();
 
-            HttpContext.Session.SetString("IDAdmin", "adm1");
 
             String id = HttpContext.Session.GetString("IDAdmin");
 

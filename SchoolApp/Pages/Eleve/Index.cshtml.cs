@@ -27,9 +27,9 @@ namespace SchoolApp.Pages.Eleve
 
         public void OnGet()
         {
-            HttpContext.Session.SetString("ID", "idetu1");
+           // HttpContext.Session.SetString("ID", "idetu1");
 
-            String id = HttpContext.Session.GetString("ID");
+            String id = HttpContext.Session.GetString("IDEleve");
 
             Etudiant = _context.Etudiants.Include(f => f.IdFillNavigation).Single(s => s.IdEtud == id);
 
@@ -38,6 +38,14 @@ namespace SchoolApp.Pages.Eleve
             ViewData["Elevename"] = Etudiant.Nom + " " + Etudiant.Prenom;
             ViewData["Modules_S1"] = Filliere.Modules.Where(s => s.Semestre=="1").ToList();
             ViewData["Modules_S2"] = Filliere.Modules.Where(s => s.Semestre == "2").ToList();
+
+        }
+
+        public async Task<IActionResult> onPostLogoutAsync()
+        {
+            HttpContext.Session.Clear();
+
+            return Redirect("/Index");
 
         }
     }

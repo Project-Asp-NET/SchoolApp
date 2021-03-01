@@ -14,10 +14,13 @@ namespace SchoolApp.Models
             Notes = new HashSet<Note>();
             Validations = new HashSet<Validation>();
         }
-        [Display]
+        [Display(Name = "Code Apoge")]
         public string IdEtud { get; set; }
+        [Display(Name = "Filiere")]
         public string IdFill { get; set; }
+        [Display(Name = "Password")]
         public string Password { get; set; }
+
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Email { get; set; }

@@ -25,7 +25,6 @@ namespace SchoolApp.Pages.Administrateur
         public void OnGet()
         {
             Elem = _context.Elements.Include(s => s.IdModNavigation ).Include(s=>s.IdProfNavigation).ToList();
-            HttpContext.Session.SetString("IDAdmin", "adm1");
 
             String id = HttpContext.Session.GetString("IDAdmin");
 
