@@ -5,43 +5,46 @@
     ViewData["Adminname"] = "Firdaous";
     Layout = "~/Pages/Shared/layout_prof.cshtml";
 }
+<div class="container">
+    <div class="main-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="etudiant.IdEtud" name="studentId" />
+                    <input type="hidden" asp-for="element.IdProf" name="profId" />
+                    <div class="form-group">
+                        <label asp-for="element.IdElem" class="control-label"></label>
+                        <input asp-for="element.IdElem" name="elementId" class="form-control" />
+                        <span asp-validation-for="element.IdElem" class="text-danger"></span>
+                    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="etudiant.IdEtud" name="studentId" />
-            <input type="hidden" asp-for="element.IdProf" name="profId" />
-            <div class="form-group">
-                <label asp-for="element.IdElem" class="control-label"></label>
-                <input asp-for="element.IdElem" name="elementId" class="form-control" />
-                <span asp-validation-for="element.IdElem" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="etudiant.Nom" class="control-label"></label>
+                        <input asp-for="etudiant.Nom" class="form-control" />
+                        <span asp-validation-for="etudiant.Nom" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="etudiant.Prenom" class="control-label"></label>
+                        <input asp-for="etudiant.Prenom" class="form-control" />
+                        <span asp-validation-for="etudiant.Prenom" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Note Avant Rattrappage</label>
+                        <input asp-for="noteEtudiant.NoteAvRatt" name="studentNote" class="form-control" />
+                        <span asp-validation-for="noteEtudiant.NoteAvRatt" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Note Rattrappage</label>
+                        <input asp-for="noteEtudiant.NoteRatt" name="studentNoteRatt" class="form-control" />
+                        <span asp-validation-for="noteEtudiant.NoteRatt" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="etudiant.Nom" class="control-label"></label>
-                <input asp-for="etudiant.Nom" class="form-control" />
-                <span asp-validation-for="etudiant.Nom" class="text-danger"></span>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="etudiant.Prenom" class="control-label"></label>
-                <input asp-for="etudiant.Prenom" class="form-control" />
-                <span asp-validation-for="etudiant.Prenom" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Note Avant Rattrappage</label>
-                <input asp-for="noteEtudiant.NoteAvRatt" name="studentNote" class="form-control" />
-                <span asp-validation-for="noteEtudiant.NoteAvRatt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Note Rattrappage</label>
-                <input asp-for="noteEtudiant.NoteRatt" name="studentNoteRatt" class="form-control" />
-                <span asp-validation-for="noteEtudiant.NoteRatt" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+        </div>
 </div>

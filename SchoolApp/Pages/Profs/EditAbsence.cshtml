@@ -6,61 +6,67 @@
     ViewData["Adminname"] = "Firdaous";
     Layout = "~/Pages/Shared/layout_prof.cshtml";
 }
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="etudiant.IdEtud" name="studentId" />
-            <input type="hidden" asp-for="element.IdProf" name="profId" />
-            <div class="form-group">
-                <label asp-for="element.IdElem" class="control-label"></label>
-                <input asp-for="element.IdElem" name="elementId" class="form-control" />
-                <span asp-validation-for="element.IdElem" class="text-danger"></span>
-            </div>
+<div class="container">
+    <div class="main-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="etudiant.IdEtud" name="studentId" />
+                    <input type="hidden" asp-for="element.IdProf" name="profId" />
+                    <div class="form-group">
+                        <label asp-for="element.IdElem" class="control-label"></label>
+                        <input asp-for="element.IdElem" name="elementId" class="form-control" readonly/>
+                        <span asp-validation-for="element.IdElem" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="etudiant.Nom" class="control-label"></label>
-                <input asp-for="etudiant.Nom" class="form-control" readonly />
-                <span asp-validation-for="etudiant.Nom" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="etudiant.Prenom" class="control-label"></label>
-                <input asp-for="etudiant.Prenom" class="form-control" readonly />
-                <span asp-validation-for="etudiant.Prenom" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Note Avant Rattrappage</label>
-                <input asp-for="absence.DateAbs" name="dateAbsence" class="form-control" />
-                <span asp-validation-for="absence.DateAbs" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Note Rattrappage</label>
-                <input asp-for="absence.IsJustif" name="isJustif" class="form-control" />
-                <span asp-validation-for="absence.IsJustif" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Note Rattrappage</label>
-                <input asp-for="absence.Justification" name="Justif" class="form-control" />
-                <span asp-validation-for="absence.Justification" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="etudiant.Nom" class="control-label"></label>
+                        <input asp-for="etudiant.Nom" class="form-control" readonly />
+                        <span asp-validation-for="etudiant.Nom" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="etudiant.Prenom" class="control-label"></label>
+                        <input asp-for="etudiant.Prenom" class="form-control" readonly />
+                        <span asp-validation-for="etudiant.Prenom" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Date d'absence</label>
+                        <input asp-for="absence.DateAbs" name="dateAbsence" class="form-control" />
+                        <span asp-validation-for="absence.DateAbs" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Absence justifiée</label>
+                        <select asp-for="absence.IsJustif" name="isJustif" id="isJustif" class="form-control" >
+                        <option value="True" selected>Oui</option>
+                        <option value="False">Non</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Justification</label>
+                        <input asp-for="absence.Justification" name="Justif" id="Justif" class="form-control" />
+                        <span asp-validation-for="absence.Justification" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+        </div>
     </div>
-</div>
-<script>
+        <script>
 
-    document.getElementById('isJustif').onchange = function () {
-    if(this.value === 'True') {
-        document.getElementById("Justif").disabled = false;
-    }
+            document.getElementById('isJustif').onchange = function () {
+                if (this.value === 'True') {
+                    document.getElementById("Justif").disabled = false;
+                }
 
-    else {
-        document.getElementById("Justif").disabled = true;
-    }
-}
+                else {
+                    document.getElementById("Justif").disabled = true;
+                }
+            }
 
 
-</script>
+        </script>

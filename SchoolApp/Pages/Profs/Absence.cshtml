@@ -68,8 +68,8 @@
                         </td>
 
                         <td>
-                            <a asp-page="/Profs/AddAbsence" asp-route-id="@item.IdEtud" asp-route-prof="@ViewData["idProf"]" asp-route-elem="@ViewData["idElem"]">
-                                Edit
+                            <a asp-page="/Profs/EditAbsence" asp-route-id="@ViewData["idEtud"]" asp-route-prof="@ViewData["idProf"]" asp-route-elem="@ViewData["idElem"]">
+                                Modifier
                             </a>
                         </td>
                     </tr>

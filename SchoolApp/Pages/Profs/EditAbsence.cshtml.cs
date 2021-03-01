@@ -38,11 +38,23 @@ namespace SchoolApp.Pages.Profs
             absence = (Absence)_context.Absences.Where(a => a.IdEtud == id && a.IdElem == elem).FirstOrDefault();
         }
 
-        //public async Task<IActionResult> OnPostAsync()
-       /* {
+        public async Task<IActionResult> OnPostAsync()
+        {
             absence = (Absence)_context.Absences.Where(a => a.IdElem == Convert.ToString(Request.Form["elementId"]) && a.IdEtud == Convert.ToString(Request.Form["studentId"])).FirstOrDefault();
 
             absence.DateAbs = Convert.ToDateTime(Request.Form["dateAbsence"]);
-*/
-        } 
+
+            if (Convert.ToString(Request.Form["isJustif"]) == "True")
+                absence.IsJustif = true;
+            else absence.IsJustif = false;
+
+            absence.Justification = Convert.ToString(Request.Form["Justif"]);
+
+            await _context.SaveChangesAsync();
+
+            string url = "/Profs/Absence?id=" + Request.Form["studentId"] + "&prof=" + Request.Form["profId"] + "&elem=" + Request.Form["elementId"];
+
+            return Redirect(url);
+        }
+    }
 }
